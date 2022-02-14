@@ -1,9 +1,6 @@
 ---
 # tasks file for ansible-role-kernel-settings/
 
-#- name: "Include OS-specific variables"
-#  include_vars: "{{ ansible_os_family }}.yml"
-
 - name: "IPv6 Kernel Settings"
   block:
     - name: "Disable IPv6 for all interfaces"
@@ -176,9 +173,3 @@
   when:
     - ansible_os_family == 'RedHat'
     - ansible_distribution_major_version >= '7'
-
-#- name: Activate Kernel Settings (RHEL 6 or Newer)
-#  command: sysctl -p
-#  when:
-#    - ansible_os_family == 'RedHat'
-#    - ansible_distribution_major_version >= '6'
