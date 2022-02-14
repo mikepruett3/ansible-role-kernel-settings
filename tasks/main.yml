@@ -139,33 +139,8 @@
         state: present
         reload: yes
 
-- name: "Kernel Pointer Settings"
-  block:
-    # https://www.kernel.org/doc/Documentation/sysctl/kernel.txt
-    # Might have issues with Vormetric Agent with this setting not set to 1
-    - name: Restrict Kernel Pointer access to 2
-      ansible.posix.sysctl:
-        name: kernel.kptr_restrict
-        value: 2
-        state: present
-      when:
-        - ansible_os_family == 'RedHat'
-        - ansible_distribution_major_version >= '6'
-        - "'vormetric' not in group_names"
-    # https://www.kernel.org/doc/Documentation/sysctl/kernel.txt
-    # Might have issues with Vormetric Agent with this setting not set to 1
-    - name: Restrict Kernel Pointer access to 1
-      ansible.posix.sysctl:
-        name: kernel.kptr_restrict
-        value: 1
-        state: present
-      when:
-        - ansible_os_family == 'RedHat'
-        - ansible_distribution_major_version >= '6'
-        - "'vormetric' in group_names"
-
 # https://www.kernel.org/doc/Documentation/security/Yama.txt
-- name: Restrict Yama Kernel access (ONLY RHEL/CENTOS 7 or Newer)
+- name: Restrict Yama Kernel access (RHEL7+)
   ansible.posix.sysctl:
     name: kernel.yama.ptrace_scope
     value: 2
