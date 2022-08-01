@@ -20,7 +20,7 @@
         state: present
     - name: "Disable default accepting of all IPv6 ICMP redirects"
       ansible.posix.sysctl:
-        name: net.ipv6.conf.default.accept_redirects 
+        name: net.ipv6.conf.default.accept_redirects
         value: 0
         state: present
         reload: yes
@@ -138,6 +138,12 @@
         value: 0
         state: present
         reload: yes
+
+- name: "Enable/Enforce Randomized Layout of Virtual Address Space"
+  ansible.posix.sysctl:
+    name: kernel.randomize_va_space
+    value: 2
+    state: present
 
 # https://www.kernel.org/doc/Documentation/security/Yama.txt
 - name: Restrict Yama Kernel access (RHEL7+)
