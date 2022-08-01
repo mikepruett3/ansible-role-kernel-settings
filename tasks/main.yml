@@ -145,6 +145,13 @@
     value: 2
     state: present
 
+- name: "Disable Core Dumps for SUID programs"
+  ansible.posix.sysctl:
+    name: fs.suid_dumpable
+    value: '0'
+    state: present
+    reload: true
+
 # https://www.kernel.org/doc/Documentation/security/Yama.txt
 - name: Restrict Yama Kernel access (RHEL7+)
   ansible.posix.sysctl:
