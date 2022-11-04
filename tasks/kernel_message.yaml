@@ -1,0 +1,16 @@
+---
+# Kernel Messaging Settings tasks file for ansible-role-kernel-settings/
+
+- name: "Restrict Kernel Messaging (dmesg) access"
+  ansible.posix.sysctl:
+    name: kernel.dmesg_restrict
+    value: '1'
+    state: present
+
+# https://en.wikipedia.org/wiki/Magic_SysRq_key
+- name: "Disable SysRQ Kernel access"
+  ansible.posix.sysctl:
+    name: kernel.sysrq
+    value: '0'
+    state: present
+    reload: yes

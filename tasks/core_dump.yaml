@@ -1,0 +1,9 @@
+---
+# Core Dumps Settings tasks file for ansible-role-kernel-settings/
+
+- name: "Disable Core Dumps for SUID programs"
+  ansible.posix.sysctl:
+    name: fs.suid_dumpable
+    value: '0'
+    state: present
+    reload: true

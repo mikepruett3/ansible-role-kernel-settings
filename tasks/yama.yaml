@@ -1,0 +1,9 @@
+---
+# Yama Kernel Settings tasks file for ansible-role-kernel-settings/
+
+# https://www.kernel.org/doc/Documentation/security/Yama.txt
+- name: "Restrict Yama Kernel access (RHEL)"
+  ansible.posix.sysctl:
+    name: kernel.yama.ptrace_scope
+    value: '2'
+    state: present
