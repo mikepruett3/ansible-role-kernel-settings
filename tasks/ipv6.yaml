@@ -13,6 +13,12 @@
     value: '1'
     state: present
 
+- name: "Disable IPv6 forwarding for all interfaces"
+  ansible.posix.sysctl:
+    name: net.ipv6.conf.all.forwarding
+    value: '0'
+    state: present
+
 - name: "Disable accepting of all IPv6 ICMP redirects"
   ansible.posix.sysctl:
     name: net.ipv6.conf.all.accept_redirects
