@@ -50,6 +50,18 @@
     value: '0'
     state: present
 
+- name: "Disable IPv6 Router Advertisements"
+  ansible.posix.sysctl:
+    name: net.ipv6.conf.all.accept_ra
+    value: '0'
+    state: present
+
+- name: "Disable IPv6 Default Router Advertisements"
+  ansible.posix.sysctl:
+    name: net.ipv6.conf.default.accept_ra
+    value: '0'
+    state: present
+
 - name: "Flush IPv6 Routes"
   ansible.posix.sysctl:
     name: net.ipv6.route.flush
