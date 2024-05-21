@@ -43,3 +43,15 @@
     value: '0'
     state: present
     reload: yes
+
+- name: "Disable IP Forwarding"
+  ansible.posix.sysctl:
+    name: net.ipv6.conf.all.forwarding
+    value: '0'
+    state: present
+
+- name: "Flush IPv6 Routes"
+  ansible.posix.sysctl:
+    name: net.ipv6.route.flush
+    value: '1'
+    state: present
